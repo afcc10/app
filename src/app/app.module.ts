@@ -7,15 +7,18 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HomeComponent } from './home/home.component';
 import { ClienteComponent } from './cliente/cliente.component';
 import { MatSidenavModule} from '@angular/material/sidenav';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { MatTableModule } from '@angular/material/table';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { DialogClienteComponent } from './cliente/dialog/dialogcliente.component';
-import { FormsModule } from '@angular/forms'
+import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 import { DialogDeleteComponent } from './common/delete/dialogdelete.component';
+import { LoginComponent } from './login/login/login.component';
+import { MatCardModule } from '@angular/material/card';
+import { JwtInterceptor } from './security/jwt.interceptor';
  
 @NgModule({
   declarations: [
@@ -23,7 +26,8 @@ import { DialogDeleteComponent } from './common/delete/dialogdelete.component';
     HomeComponent,
     ClienteComponent,
     DialogClienteComponent,
-    DialogDeleteComponent
+    DialogDeleteComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -36,9 +40,11 @@ import { DialogDeleteComponent } from './common/delete/dialogdelete.component';
     MatButtonModule,
     MatInputModule,
     MatSnackBarModule,
-    FormsModule
+    MatCardModule,
+    FormsModule,
+    ReactiveFormsModule    
   ],
-  providers: [],
+  providers: [{provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi:true}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
