@@ -19,6 +19,9 @@ import { DialogDeleteComponent } from './common/delete/dialogdelete.component';
 import { LoginComponent } from './login/login/login.component';
 import { MatCardModule } from '@angular/material/card';
 import { JwtInterceptor } from './security/jwt.interceptor';
+import { VentaComponent } from './venta/venta.component';
+import { DialogVentaComponent } from './venta/dialog/dialogventa.component';
+import { MatSelectModule } from '@angular/material/select';
  
 @NgModule({
   declarations: [
@@ -27,7 +30,9 @@ import { JwtInterceptor } from './security/jwt.interceptor';
     ClienteComponent,
     DialogClienteComponent,
     DialogDeleteComponent,
-    LoginComponent
+    LoginComponent,
+    VentaComponent,
+    DialogVentaComponent
   ],
   imports: [
     BrowserModule,
@@ -42,7 +47,8 @@ import { JwtInterceptor } from './security/jwt.interceptor';
     MatSnackBarModule,
     MatCardModule,
     FormsModule,
-    ReactiveFormsModule    
+    ReactiveFormsModule,
+    MatSelectModule
   ],
   providers: [{provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi:true}],
   bootstrap: [AppComponent]

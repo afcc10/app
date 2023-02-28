@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { BehaviorSubject, map, Observable } from "rxjs";
+import { environment } from "src/environments/environment";
 import { Login } from "../models/login";
 import { Response } from '../models/response'
 import { Usuario } from "../models/usuario";
@@ -14,7 +15,7 @@ const httpOption = {
 @Injectable({ providedIn: 'root' })
 
 export class ApiauthService {
-    url: string = 'https://localhost:5001/api/User/login';
+    USUARIO_BASE_URL: string = environment.BASE_URL_API_USUARIO;    
     private usuarioSubject: BehaviorSubject<Usuario>;
     public usuar: Observable<Usuario>;
 
@@ -28,7 +29,7 @@ export class ApiauthService {
      }
 
     login(login: Login): Observable<Response>{
-        return this.http.post<Response>(this.url,login,httpOption).pipe(
+        return this.http.post<Response>(this.USUARIO_BASE_URL,login,httpOption).pipe(
           map(res => {
             if(res.exito === 200){
               const user: Usuario = res.data;
