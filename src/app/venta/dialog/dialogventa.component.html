@@ -19,11 +19,11 @@
         </mat-form-field>
         <mat-form-field>
             <mat-label>Cantidad</mat-label>
-            <input type="number" formControlName="cantidad" matInput>
+            <input type="number" min="1" formControlName="cantidad" matInput>
         </mat-form-field>
         <mat-form-field>
             <mat-label>Importe</mat-label>
-            <input type="number" formControlName="importe" matInput>
+            <input type="number" min="1" formControlName="importe" matInput>
         </mat-form-field>
         <div>
             <button type="submit" [disabled]="!conceptoForm.valid" mat-raised-button>+</button>
