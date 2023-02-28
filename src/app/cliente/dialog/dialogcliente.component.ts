@@ -10,6 +10,7 @@ import { ApiClienteService } from "src/app/services/api-cliente.service";
 })
 export class DialogClienteComponent{
     public nombre: string;
+    public edad: number;
 
     constructor(public dialogRef: MatDialogRef<DialogClienteComponent>, 
         public apiCliente: ApiClienteService,
@@ -17,6 +18,7 @@ export class DialogClienteComponent{
         @Inject(MAT_DIALOG_DATA) public cliente: Cliente){
             if(this.cliente !== null){
                 this.nombre = cliente.nombre;
+                this.edad = cliente.edad;
             }
         }
         
@@ -25,7 +27,7 @@ export class DialogClienteComponent{
     }
 
     addCliente(){
-        const cliente: Cliente = { id: 0, nombre: this.nombre};
+        const cliente: Cliente = { id: 0, nombre: this.nombre, edad: this.edad};
         this.apiCliente.addCliente(cliente).subscribe(response => {
             if(response.exito === 200){
                 this.dialogRef.close();
@@ -35,7 +37,7 @@ export class DialogClienteComponent{
     }
 
     editCliente(){
-        const cliente: Cliente = { id: this.cliente.id, nombre: this.nombre};
+        const cliente: Cliente = { id: this.cliente.id, nombre: this.nombre, edad: this.edad};
         this.apiCliente.editCliente(cliente).subscribe(response => {
             if(response.exito === 200){
                 this.dialogRef.close();
